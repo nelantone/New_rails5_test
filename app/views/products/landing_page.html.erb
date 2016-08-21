@@ -2,6 +2,9 @@
 <section class="index">
 <div class="big-bear-img"></div>
 <h2>Welcome!</h2>
+<% if notice %>
+    <p id="notice" class="alert alert-info"><%= notice %></p>
+<% end %>
 <h4>We have new bikes in stock!</h>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->

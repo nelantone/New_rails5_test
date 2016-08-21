@@ -23,6 +23,7 @@
         <a class="navbar-brand" id="logo" href="/"><%= image_tag("bike_bears_s2.png",size: "80x80", alt: "Bearlin Bike Logo", title:"Home") %>
         </a>
         <a class="txt-title navbar-brand" alt:"Home" href="/" title:"Home">Bearlin Bikes</a>
+
         <div id="navbar" class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
             <li><%= link_to "Bikes", products_path %></li>
@@ -42,6 +43,14 @@
       </div><!-- end navbar-reader -->
     </div><!-- end container -->
   </nav><!-- navbar-fixed-top -->
+  <div class="navbar-left form-container">
+    <% if alert %>
+      <p id="alert" class="alert alert-info"><%= alert %>
+    <% end %>
+    <% if notice %>
+      <p id="notice" class="alert alert-info"><%= notice %></p>
+    <% end %>
+  </div>
   <div class="navbar-right form-container">
     <%= form_tag("/products", method: "get") do %>
       <%= search_field_tag :q, nil, { id: 'search-input', placeholder: 'Search for...' } %>
@@ -57,5 +66,6 @@
   <footer class="navbar-fixed-bottom navbar navbar-default site-footer">
    &copy; 2016 Bearlin Bikes
  </footer>
+ <script src="assets/alert_timeout.js" type="text/javascript"></script>
 </body>
 </html>
