@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
-  resources :products
+  resources :products, :users
   resources :orders, only: [:index, :show, :create, :destroy]
 
   get 'static_pages/about'
 
   get 'static_pages/contact'
 
-  get '/users/:id', to: 'products#show'
+  get '/products/:id', to: 'products#show'
 
   post 'static_pages/thank_you'
 
