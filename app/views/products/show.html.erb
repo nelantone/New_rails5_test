@@ -32,33 +32,43 @@
 <br>
 <br>
 <br>
+<section class="center-items">
   <%= render partial: 'comments' %>
-<br>
-<% if @product.highest_rating_comment.nil? %>
-  Sorry, there are no comments about the product. <br>Be the first writing a review!
-<% else %>
-  <div class="top-rated-comment">
-    <strong>
-      <p>
-        <div class="secondary-title product-reviews">Top rated comment:</div>
-        <%=  @product.highest_rating_comment.user.first_name %> <small><em><%= "#{time_ago_in_words( @product.highest_rating_comment.created_at)} ago" %></em></small>
-        <div class="rated" data-score="<%= @product.highest_rating_comment.rating %>"></div><br>
-        <%= @product.highest_rating_comment.body %>
-      </p>
-    </strong>
+  <br>
+  <% if @product.highest_rating_comment.nil? %>
+    Sorry, there are no comments about the product. <br>Be the first writing a review!
+  <% else %>
+    <div class="top-rated-comment">
+      <strong>
+        <p>
+          <div class="secondary-title product-reviews">Top rated comment:</div>
+          <%=  @product.highest_rating_comment.user.first_name %> <small><em><%= "#{time_ago_in_words( @product.highest_rating_comment.created_at)} ago" %></em></small>
+          <div class="rated" data-score="<%= @product.highest_rating_comment.rating %>"></div><br>
+          <%= @product.highest_rating_comment.body %>
+        </p>
+      </strong>
+    </div>
+    <p></p>
+    <div class="product-reviews">
+      <% @comments.map do |comment| %>
+        <div class="row">
+          <hr>
+            <%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small><br>
+            <div class="rated" data-score="<%= comment.rating %>"></div><br>
+            <%= comment.body %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="flickr_pagination">
+    <div class="page_info">
+      <%= page_entries_info  @comments %>
+    </div>
+    <br>
+    <%= will_paginate  @comments, :container => false %>
   </div>
-  <p></p>
-  <div class="product-reviews">
-    <% @product.rest_of_comments.map do |comment| %>
-      <div class="row">
-        <hr>
-          <%= comment.user.first_name %> <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small><br>
-          <div class="rated" data-score="<%= comment.rating %>"></div><br>
-          <%= comment.body %>
-      </div>
-    <% end %>
-  </div>
-<% end %>
-<br><br><br>
-<%= link_to icon('edit','Edit'), edit_product_path(@product), class: "btn btn-default" %>
-<%= link_to icon('back','Back'), products_path, class: "btn btn-default" %>
+
+  <br><br><br>
+  <%= link_to icon('edit','Edit'), edit_product_path(@product), class: "btn btn-default" %>
+  <%= link_to icon('chevron-left','Back'), products_path, class: "btn btn-default" %>
+</section>
