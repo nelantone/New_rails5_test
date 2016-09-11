@@ -4,7 +4,7 @@
 <p>
   <strong><div class="txt-title"><%= @product.name %></div></strong>
 </p>
-<%= image_tag( @product.image_url, class: "img-responsive") %>
+<%= image_tag( @product.image_url, class: "img-responsive img-zoom", width: "750") %>
 <div class="col-sm-1 col-md-4 description rating-size">
   Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div>
 </div>
