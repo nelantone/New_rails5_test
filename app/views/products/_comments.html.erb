@@ -1,16 +1,21 @@
-<% if signed_in? %>
-   <strong><div class="secondary-title">Add a review:</div></strong>
-  <%= form_for([@product, @product.comments.build]) do |f| %>
-    <p class="center-items">
-      <%= f.label :body, "Comments" %>
-      <%= f.text_area :body %>
-      <%= f.label :rating %>
-      <div class="rating "></div>
-    </p>
-    <p class="submit-cent">
-      <%= button_tag(type: "submit", class: "btn btn-primary") do %>
-        <i class="fa fa-send"> </i> Submit
+<% @comments.map do |comment| %>
+  <div class="row">
+    <hr>
+      <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
+      <br>by:
+      <% if comment.user.first_name.nil? || comment.user.last_name.nil? %>
+        Unknown user
+      <% else %>
+        <%=  "#{comment.user.first_name} #{comment.user.last_name}" %>
       <% end %>
-    </p>
-  <% end %>
+      <% unless current_user.nil? %>
+        <% if signed_in? && (current_user.admin? || current_user.moderator?) %>
+          <%=  render partial:'comment' %>
+          <%= link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, product_comment_path(comment.product, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      <% end %>
+      <br>
+      <%= comment.body %>
+      <div class="rated" data-score="<%= comment.rating %>"></div><br>
+  </div>
 <% end %>

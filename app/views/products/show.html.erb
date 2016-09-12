@@ -5,7 +5,7 @@
   <strong><div class="txt-title"><%= @product.name %></div></strong>
 </p>
 <%= image_tag( @product.image_url, class: "img-responsive img-zoom", width: "750") %>
-<div class="col-sm-1 col-md-4 description rating-size">
+<div class="col-sm-1 col-md-4 description rating-size" id="average-rating">
   Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div>
 </div>
 <div class="col-sm-2 col-md-4 description">
@@ -32,7 +32,7 @@
     <%= render partial: "shared/stripe_checkout_button" %>
     <%= hidden_field_tag(:product_id, @product.id ) %>
   <% end %>
-  <%= render partial: 'comments' %>
+  <%= render partial: 'comment_form' %>
   <br>
   <% if @product.highest_rating_comment.nil? %>
     Sorry, there are no comments about the product. <br>Be the first writing a review!
@@ -41,27 +41,27 @@
       <strong>
         <p>
           <div class="secondary-title product-reviews">Top rated comment:</div>
-          <%=  @product.highest_rating_comment.user.first_name %> <small><em><%= "#{time_ago_in_words( @product.highest_rating_comment.created_at)} ago" %></em></small>
-          <div class="rated" data-score="<%= @product.highest_rating_comment.rating %>"></div><br>
+          <small>
+            <em>
+              by
+              <% if @product.highest_rating_comment.user.first_name.nil? ||
+                  @product.highest_rating_comment.user.first_name.nil? %>
+                &nbsp;Unknown user
+              <% else %>
+                <%=  " #{@product.highest_rating_comment.user.first_name} #{@product.highest_rating_comment.user.last_name}" %>
+              <% end %>
+              <br>
+              <%= "#{time_ago_in_words( @product.highest_rating_comment.created_at)} ago" %>
+            </em>
+          </small>
           <%= @product.highest_rating_comment.body %>
+          <div class="rated" data-score="<%= @product.highest_rating_comment.rating %>"></div><br>
         </p>
       </strong>
     </div>
     <p></p>
     <div class="product-reviews">
-      <% @comments.map do |comment| %>
-        <div class="row">
-          <hr>
-            <small><em><%= "#{time_ago_in_words(comment.created_at)} ago" %></em></small>
-            <% unless current_user.nil? %>
-              <% if signed_in? && (current_user.admin? || current_user.moderator?) %>
-                  <%= link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, product_comment_path(comment.product, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
-              <% end %>
-            <% end %>
-            <div class="rated" data-score="<%= comment.rating %>"></div><br>
-            <%= comment.body %>
-        </div>
-      <% end %>
+      <%= render partial: 'comments' %>
     </div>
   <% end %>
   <div class="flickr_pagination">
