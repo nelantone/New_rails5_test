@@ -10,7 +10,7 @@
       <% end %>
       <% unless current_user.nil? %>
         <% if signed_in? && (current_user.admin? || current_user.moderator?) %>
-          <%=  render partial:'comment' %>
+          <%=  render partial:"comments/comment", locals: { comment: comment } %>
           <%= link_to ('<span class="glyphicon glyphicon-remove"></span>').html_safe, product_comment_path(comment.product, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
       <% end %>
