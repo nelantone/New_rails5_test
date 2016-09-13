@@ -1,14 +1,16 @@
-<div class="col-sm-2 col-md-4">
-  <br>
-  <%= product.name %><br>
-  <% if product.image_url.nil? %>
-    (no image)
-  <% else %>
-    <%= image_tag(product.image_url, class: "img-responsive img-rounded") %>
-  <% end %>
-  <%= product.price %> Eur.<br>
-  <%= link_to 'Show', product %>
-  <%= link_to 'Edit', edit_product_path(product) %>
-  <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-  <br>
-</div> <!-- col-sm-2 col-md-4 -->
+<% cache product do %>
+  <div class="col-sm-2 col-md-4">
+    <br>
+    <%= product.name %><br>
+    <% if product.image_url.nil? %>
+      (no image)
+    <% else %>
+      <%= image_tag(product.image_url, class: "img-responsive img-rounded") %>
+    <% end %>
+    <%= product.price %> Eur.<br>
+    <%= link_to 'Show', product %>
+    <%= link_to 'Edit', edit_product_path(product) %>
+    <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <br>
+  </div> <!-- col-sm-2 col-md-4 -->
+<% end %>

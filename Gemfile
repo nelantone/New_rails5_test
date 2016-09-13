@@ -37,6 +37,8 @@ gem 'font-awesome-sass', '~> 4.6', '>= 4.6.2'
 ## Gemfile for Rails 3+, Sinatra, and Merb
 gem 'will_paginate', '~> 3.1.0'
 gem 'stripe'
+# memcached servers
+gem 'dalli'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

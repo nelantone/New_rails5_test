@@ -10,7 +10,9 @@
     <p><h3> Soon you will find our products list! We are working on it</h3></p>
   <% else %>
     <div class="container">
-      <%= render @products %>
+      <% cache(cache_key_for_products)  do %>
+        <%= render @products %>
+      <% end %>
     </div><!-- container -->
   <% end %>
   <br>
