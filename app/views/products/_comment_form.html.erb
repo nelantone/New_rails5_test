@@ -1,0 +1,16 @@
+<% if signed_in? %>
+   <strong><div class="secondary-title">Add a review:</div></strong>
+  <%= form_for([@product, @product.comments.build], remote: true) do |f| %>
+    <p class="center-items">
+      <%= f.label :body, "Comments" %>
+      <%= f.text_area :body %>
+      <%= f.label :rating %>
+      <div class="rating "></div>
+    </p>
+    <p class="submit-cent">
+      <%= button_tag(type: "submit", class: "btn btn-primary") do %>
+        <i class="fa fa-send"> </i> Submit
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
