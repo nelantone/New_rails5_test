@@ -55,7 +55,7 @@
     <% end %>
   </div>
   <div class="navbar-right form-container">
-    <%= form_tag("/products", method: "get") do %>
+    <%= form_tag("/products", method: "get", class: 'search-form') do %>
       <%= search_field_tag :q, nil, { id: 'search-input', placeholder: 'Search for...' } %>
       <%= button_tag(type: "submit", class: "btn btn-secondary") do %>
         <id = 'search-button'><i class="fa fa-search"></i></id>
