@@ -15,8 +15,10 @@ Rails.application.routes.draw do
 
   post 'static_pages/thank_you'
 
-  # get 'static_pages/index'
   root 'products#landing_page'
+
+  mount ActionCable.server => '/cable'
+
   match '/search_suggestions', to: 'products#index', via: :get
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users, :path => '', :path_names => {:sign_in => 'login', :sign_out => 'logout'},
