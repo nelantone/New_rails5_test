@@ -37,6 +37,8 @@
   <% if @product.highest_rating_comment.nil? %>
     Sorry, there are no comments about the product. <br>Be the first writing a review!
   <% else %>
+    <div class="product-reviews">
+      <div class="alert alert-info" style="display:none" role="alert">A new comment was posted!</div>
     <div class="top-rated-comment">
       <strong>
         <p>
@@ -60,7 +62,6 @@
       </strong>
     </div>
     <p></p>
-    <div class="product-reviews">
       <%= render partial: 'comments' %>
     </div>
   <% end %>
