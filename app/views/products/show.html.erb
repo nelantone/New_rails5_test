@@ -1,16 +1,18 @@
-<% if notice %>
-    <p id="notice" class="alert alert-info"><%= notice %></p>
-<% end %>
-<p>
-  <strong><div class="txt-title"><%= @product.name %></div></strong>
-</p>
-<%= image_tag( @product.image_url, class: "img-responsive img-zoom", width: "750") %>
-<div class="col-sm-1 col-md-4 description rating-size" id="average-rating">
-  Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div>
-</div>
-<div class="col-sm-2 col-md-4 description">
-  <strong>Description:</strong>
-  <%= @product.description %>
+<div class="row" data-product-id="<%= @product.id %>">
+  <% if notice %>
+      <p id="notice" class="alert alert-info"><%= notice %></p>
+  <% end %>
+  <p>
+    <strong><div class="txt-title"><%= @product.name %></div></strong>
+  </p>
+  <%= image_tag( @product.image_url, class: "img-responsive img-zoom", width: "750") %>
+  <div class="col-sm-1 col-md-4 description rating-size" id="average-rating">
+    Average Rating: <div class="rated" data-score="<%= @product.average_rating %>"></div>
+  </div>
+  <div class="col-sm-2 col-md-4 description">
+    <strong>Description:</strong>
+    <%= @product.description %>
+  </div>
 </div>
 
 <div class="col-sm-2 col-md-4 description">
