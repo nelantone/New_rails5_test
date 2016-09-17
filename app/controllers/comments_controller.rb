@@ -5,10 +5,11 @@ class CommentsController < ApplicationController
     @comment = @product.comments.new(comment_params)
     @comments = Comment.paginate(:page => params[:page])
     @comment.user = current_user
+    @user = current_user
     respond_to do |format|
       if @comment.save
-        ActionCable.server.broadcast 'product_channel', comment: @comment
-           format.html { redirect_to @product, notice: 'Review was created successfully.' }
+        #ActionCable.server.broadcast 'product_channel', comment: @comment
+        format.html { redirect_to @product, notice: 'Review was created successfully.' }
         format.json { render :show, status: :created, location: @product }
         format.js
       else
