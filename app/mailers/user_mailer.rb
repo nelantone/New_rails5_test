@@ -14,9 +14,11 @@ class UserMailer < ApplicationMailer
           :subject => "Welcome to #{@appname}! thanks for signing up")
   end
 
-  def create(user, charge)
-    @appname = "Bearlin Bikes"
-    mail( :to => user.email,
-          :subject => "Thank you for buying in #{@appname}! Here is your order")
-  end
+  # def create(email, product, charge)
+  #   @appname = "Bearlin Bikes"
+  #   mail( :to => email,
+  #         :subject => "Thank you for buying in #{@appname}! Here is your order") do |format|
+  #     format.html { render 'mail_order' }
+  #   end
+  # end
 end
