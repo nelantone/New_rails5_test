@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   get 'static_pages/contact'
 
+  #pending task in user/mailer
   post 'payments/create'
 
   get '/products/:id', to: 'products#show'
