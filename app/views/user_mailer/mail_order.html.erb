@@ -7,9 +7,9 @@
     <h1>Thank you for purchasing with us! </h1>
     <p>
       Your order is begin processed
-      <% byebug %>
-      <%= "Bike: #{@product.name}" %>.<br>
-      <%= "Price: #{@product.price.round(2)} Eur" %>.<br>
+      <%= "Bike: #{product.name}" %>.<br>
+      <%= "Price: #{product.price.round(2)} Eur" %>.<br>
+      This is just a notification.
       Soon, you will recieve a purchase confirmation and your Receipt.
     </p>
     <p>
@@ -17,4 +17,3 @@
     <p>Thank you, and have a great day!</p>
     Your Bearlin Bike Team.
   </body>
-</html>

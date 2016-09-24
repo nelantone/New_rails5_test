@@ -15,9 +15,11 @@ class UserMailer < ApplicationMailer
   end
 
   # pending task
-  # def create(user, charge)
-  #   @appname = "Bearlin Bikes"
-  #   mail( to: user.email,
-  #         subject: "Thank you for buying in #{@appname}! Here is your order")
-  # end
+  def create(user, product)
+    @appname = "Bearlin Bikes"
+    mail( to: user.email,
+          subject: "Thank you for buying in #{@appname}! Here is your order") do |format|
+            format.html { render 'mail_order', locals: { product: product } }
+          end
+  end
 end
