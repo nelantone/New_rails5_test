@@ -14,9 +14,10 @@ class UserMailer < ApplicationMailer
           subject: "Welcome to #{@appname}! thanks for signing up")
   end
 
-  def create(user, charge)
-    @appname = "Bearlin Bikes"
-    mail( to: user.email,
-          subject: "Thank you for buying in #{@appname}! Here is your order")
-  end
+  # pending task
+  # def create(user, charge)
+  #   @appname = "Bearlin Bikes"
+  #   mail( to: user.email,
+  #         subject: "Thank you for buying in #{@appname}! Here is your order")
+  # end
 end
