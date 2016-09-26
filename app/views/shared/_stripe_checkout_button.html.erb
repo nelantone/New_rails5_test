@@ -1,8 +1,8 @@
 <script
   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-  data-image="https://bearlin-bikes.herokuapp.com/assets/bike_bears_s2-a11fd4b66562ca3b124b8eb010734a6d7ec882f4170a1f6b9ad13631f3ce2fd7.png"
+  data-image="http://bearlin-bikes.herokuapp.com/assets/bike_bears_s2-a11fd4b66562ca3b124b8eb010734a6d7ec882f4170a1f6b9ad13631f3ce2fd7.png"
   data-name="Bearlin Bikes"
-  data-description= <%= "#{@product.name}: #{@product.description}"%>
+  data-description= "<%= "#{@product.name}: #{@product.description}"%>"
   data-amount= "<%="#{@product.price.round(2)} EUR" %>">
 </script>

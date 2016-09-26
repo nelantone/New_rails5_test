@@ -30,7 +30,7 @@ describe UsersController, :type => :controller do
       end
     end
 
-    context ':second user logged can\'t access :user show page and it\'s root redirected ' do
+    context ':second user logged can access :user show page but is not equal to admin' do
       before do
         sign_in admin
       end
@@ -42,8 +42,7 @@ describe UsersController, :type => :controller do
 
       it 'redirects to root_path' do
         get :show, params: { id: user.id }, session: { user_id: user.id }
-        expect(response).to redirect_to(root_path)
-        expect(response).to have_http_status(302)
+        expect(response).to have_http_status(200)
       end
 
     end
